@@ -1,7 +1,7 @@
 import * as A from "fp-ts/lib/Array";
-import { pipe, flow } from "fp-ts/lib/function";
 import * as T from "fp-ts/lib/Task";
 import * as TE from "fp-ts/lib/TaskEither";
+import { pipe, flow } from "fp-ts/lib/function";
 
 export type sellPage = {
   shopName: string;
