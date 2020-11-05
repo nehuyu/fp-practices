@@ -3,21 +3,21 @@ import * as T from "fp-ts/lib/Task";
 import * as TE from "fp-ts/lib/TaskEither";
 import { pipe, flow } from "fp-ts/lib/function";
 
-export type sellPage = {
+export type SellPage = {
   shopName: string;
   price: number;
   url: string;
 };
 
-export type thumbnail = {
+export type Thumbnail = {
   large: string;
 };
 
-export type Product = sellPage & {
-  thumbnail: thumbnail;
+export type Product = SellPage & {
+  thumbnail: Thumbnail;
 };
 
-const getSellPages = (): Promise<sellPage[]> => {
+const getSellPages = (): Promise<SellPage[]> => {
   return Promise.resolve([
     {
       shopName: "hogehoge",
@@ -27,16 +27,16 @@ const getSellPages = (): Promise<sellPage[]> => {
   ]);
 };
 
-const getThumbnail = (sellPage: sellPage): Promise<thumbnail> => {
+const getThumbnail = (sellPage: SellPage): Promise<Thumbnail> => {
   return Promise.resolve({
     large: "http://....",
   });
 };
 
-const safeGetSellPages = (): TE.TaskEither<Error, sellPage[]> => {
+const safeGetSellPages = (): TE.TaskEither<Error, SellPage[]> => {
   return TE.tryCatch(
     () => {
-      return new Promise<sellPage[]>(async (resolve) => {
+      return new Promise<SellPage[]>(async (resolve) => {
         resolve(await getSellPages());
       });
     },
@@ -44,7 +44,7 @@ const safeGetSellPages = (): TE.TaskEither<Error, sellPage[]> => {
   );
 };
 
-const safeGetProduct = (sellPage: sellPage): TE.TaskEither<Error, Product> => {
+const safeGetProduct = (sellPage: SellPage): TE.TaskEither<Error, Product> => {
   return TE.tryCatch(
     () => {
       return new Promise<Product>(async (resolve) => {
